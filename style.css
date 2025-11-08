@@ -1,0 +1,213 @@
+/* ==================================== */
+/* 1. DEFINISI CSS VARIABLES (DARK MODE DEFAULT) */
+/* ==================================== */
+:root {
+    /* Warna Umum (Default: DARK MODE) */
+    --bg-main: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    --color-text: #FFFFFF;
+    
+    /* Warna Header */
+    --bg-header-box: #c0392b;
+    --color-header-text: #FFFFFF;
+
+    /* Warna Tabel */
+    --bg-table-container: #333333;
+    --bg-table-header: #444444;
+    --color-table-text: #f0f0f0;
+    --border-color: #555;
+
+    /* Warna Tombol */
+    --btn-search: #e53935;
+    --btn-refresh: #43a047;
+}
+
+/* ==================================== */
+/* 2. LIGHT MODE: Menimpa Variabel dengan Kelas .light-mode */
+/* ==================================== */
+body.light-mode {
+    --bg-main: #FFFFFF;      
+    --color-text: #000000;   
+    
+    --bg-header-box: #FF3333;
+    --color-header-text: #FFFFFF;
+
+    --bg-table-container: #FFFFFF;
+    --bg-table-header: #f2f2f2;
+    --color-table-text: #000000;
+    --border-color: #ddd;
+}
+
+
+/* ==================================== */
+/* 3. APLIKASI VARIABEL KE ELEMEN */
+/* ==================================== */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-main); 
+  color: var(--color-text); 
+  margin: 0;
+  padding: 0;
+  transition: background 0.5s, color 0.5s; /* Transisi halus */
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  position: relative; 
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  
+  background-color: var(--bg-header-box); 
+  /* PERBAIKAN: Agar selebar tabel */
+  display: block; 
+  padding: 20px 0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.header h1, .header p {
+    color: var(--color-header-text); 
+    margin: 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 1em;
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-section input,
+.search-section select {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--bg-table-header);
+  color: var(--color-text);
+  transition: background-color 0.5s, color 0.5s; 
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#searchBtn {
+  background-color: var(--btn-search);
+  color: white;
+}
+
+#refreshBtn {
+  background-color: var(--btn-refresh);
+  color: white;
+}
+
+.table-container {
+  background: var(--bg-table-container);
+  color: var(--color-table-text);
+  border-radius: 10px;
+  overflow-x: auto;
+  transition: background 0.5s, color 0.5s; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color); 
+  text-align: left;
+}
+
+th {
+  background: var(--bg-table-header);
+  color: var(--color-table-text);
+  transition: background 0.5s, color 0.5s; 
+}
+
+.error-message {
+  text-align: center;
+  color: #ff4444;
+  margin-bottom: 10px;
+}
+
+.stats {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+/* ==================================== */
+/* 4. GAYA TOMBOL TOGGLE */
+/* ==================================== */
+.mode-toggle {
+    position: absolute; 
+    top: -25px; 
+    right: 0;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70px; 
+    height: 34px; 
+    background-color: #2c3e50; /* Default Dark */
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: background-color 0.4s;
+    box-sizing: border-box;
+}
+
+.toggle-label i {
+    font-size: 16px;
+    transition: all 0.4s;
+    z-index: 1;
+}
+
+.toggle-label .fa-sun { color: #f1c40f; }
+.toggle-label .fa-moon { color: #f39c12; }
+
+#darkToggle {
+    display: none; 
+}
+
+.slider {
+    position: absolute;
+    right: 4px; /* Default: slider di kanan (Mode Gelap) */
+    width: 26px;
+    height: 26px;
+    background-color: #bdc3c7;
+    border-radius: 50%;
+    transition: transform 0.4s, background-color 0.4s;
+}
+
+/* Gaya ketika LIGHT MODE aktif (checkbox dicentang) */
+#darkToggle:checked + .toggle-label {
+    background-color: #ccc; 
+}
+
+#darkToggle:checked + .toggle-label .slider {
+    transform: translateX(-36px); /* Geser slider ke kiri */
+    background-color: white;
+}
